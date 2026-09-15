@@ -1,11 +1,11 @@
-<section class="page">
-  <h1>Experience</h1>
+<section class="page" id="experience">
+  <h2>Experience</h2>
 
   <div class="timeline">
     @for (entry of experience; track entry.company) {
       <article class="timeline__entry">
         <div class="timeline__header">
-          <h2>{{ entry.role }}</h2>
+          <h3>{{ entry.role }}</h3>
           <p class="timeline__meta">{{ entry.company }} &middot; {{ entry.period }}</p>
           <p class="timeline__meta">{{ entry.location }}</p>
         </div>

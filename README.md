@@ -6,6 +6,7 @@ Personal portfolio site, built with Angular. Live at
 ## Stack
 
 - Angular 22 (standalone components, signals, `@if`/`@for` control flow)
+- Single-page layout: the nav bar scrolls to sections on the same page rather than routing between separate pages
 - SSR + build-time prerendering (`@angular/ssr`, static output mode)
 - SCSS with CSS custom properties for light/dark theming
 - Vitest for unit tests
@@ -18,7 +19,7 @@ src/
   app/
     core/            # theme service, app-wide singletons
     layout/           # header, footer
-    pages/            # one folder per route
+    sections/         # one folder per page section (home, about, experience, projects, contact)
     shared/           # reusable components (project-card)
   content/            # profile, experience, and project data as typed constants
 ```
