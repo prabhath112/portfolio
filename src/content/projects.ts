@@ -19,7 +19,7 @@ export const projects: ProjectEntry[] = [
     id: 'oracle',
     name: 'Oracle',
     description:
-      'A personal AI assistant I am building for myself: a FastAPI backend paired with a React frontend, handling notifications, scheduling, and email integration through agentic automation. Still a work in progress, kept private for now.',
-    tech: ['FastAPI', 'React', 'TypeScript'],
+      "A personal AI assistant I'm building for myself: a FastAPI backend paired with a React frontend. It runs multiple specialized agents that plan and carry out tasks with minimal supervision, coordinating between them rather than relying on one big model doing everything. Agents call out to real tools and services (calendar, email, notifications) through a structured tool-calling layer, similar to how MCP servers expose tools to LLMs. Still a work in progress, kept private for now.",
+    tech: ['FastAPI', 'React', 'TypeScript', 'Multi-agent orchestration', 'LLM tool-calling'],
   },
 ];

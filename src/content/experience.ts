@@ -14,7 +14,9 @@ export const experience: ExperienceEntry[] = [
     location: 'Mangaluru, Karnataka, India',
     highlights: [
       'Build and maintain full-stack features using C#, .NET, and Angular.',
-      'Write and troubleshoot SQL queries for backend data.',
+      'Work with Azure SQL and Cosmos DB for backend data, alongside writing and troubleshooting SQL queries.',
+      'Host and monitor services on Azure App Service, using Application Insights and Log Analytics to track performance and catch issues early.',
+      'Maintain Azure DevOps pipelines for build and release.',
       'Use Git day to day: branches, reviews, the usual team workflow.',
       'Most of this I picked up on the job rather than in a classroom.',
     ],

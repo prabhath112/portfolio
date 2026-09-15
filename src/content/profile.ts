@@ -26,7 +26,7 @@ export const profile = {
       period: '2024',
     },
   ] as EducationEntry[],
-  skills: ['C#', '.NET', 'Angular', 'SQL', 'JavaScript', 'Git', 'Software Development'],
+  skills: ['C#', '.NET', 'Angular', 'SQL', 'Azure', 'JavaScript', 'Git'],
   links: {
     github: 'https://github.com/prabhath112',
     linkedin: 'https://www.linkedin.com/in/prabhath007/',
