@@ -1,0 +1,16 @@
+<section class="hero">
+  <p class="hero__eyebrow">{{ profile.role }} at EG India</p>
+  <h1>{{ profile.name }}</h1>
+  <p class="hero__summary">{{ profile.summary }}</p>
+
+  <div class="hero__actions">
+    <a routerLink="/projects" class="btn btn--primary">See my work</a>
+    <a routerLink="/contact" class="btn btn--secondary">Get in touch</a>
+  </div>
+
+  <ul class="hero__skills">
+    @for (skill of profile.skills; track skill) {
+      <li>{{ skill }}</li>
+    }
+  </ul>
+</section>

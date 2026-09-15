@@ -1,0 +1,21 @@
+<section class="page">
+  <h1>Experience</h1>
+
+  <div class="timeline">
+    @for (entry of experience; track entry.company) {
+      <article class="timeline__entry">
+        <div class="timeline__header">
+          <h2>{{ entry.role }}</h2>
+          <p class="timeline__meta">{{ entry.company }} &middot; {{ entry.period }}</p>
+          <p class="timeline__meta">{{ entry.location }}</p>
+        </div>
+
+        <ul>
+          @for (highlight of entry.highlights; track highlight) {
+            <li>{{ highlight }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+</section>

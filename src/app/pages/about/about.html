@@ -1,0 +1,17 @@
+<section class="page about">
+  <h1>About</h1>
+
+  @for (paragraph of profile.bio; track paragraph) {
+    <p>{{ paragraph }}</p>
+  }
+
+  <h2>Education</h2>
+  <ul class="about__education">
+    @for (entry of profile.education; track entry.institution) {
+      <li>
+        <p class="about__credential">{{ entry.credential }}</p>
+        <p class="about__institution">{{ entry.institution }} &middot; {{ entry.period }}</p>
+      </li>
+    }
+  </ul>
+</section>

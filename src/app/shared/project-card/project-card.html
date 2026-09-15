@@ -1,0 +1,16 @@
+<article class="card">
+  <h2>{{ project().name }}</h2>
+  <p>{{ project().description }}</p>
+
+  <ul class="card__tech">
+    @for (tech of project().tech; track tech) {
+      <li>{{ tech }}</li>
+    }
+  </ul>
+
+  @if (project().link) {
+    <a class="card__link" [href]="project().link" target="_blank" rel="noopener">
+      View on GitHub &rarr;
+    </a>
+  }
+</article>
