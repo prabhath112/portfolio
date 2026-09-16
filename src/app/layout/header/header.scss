@@ -95,9 +95,13 @@
     overflow: hidden;
     transition: max-height 0.2s ease;
 
-    a,
-    button {
+    a {
       padding: var(--space-2) var(--space-3);
+    }
+
+    .header__theme-toggle {
+      align-self: flex-start;
+      margin: var(--space-2) var(--space-3);
     }
 
     &.header__nav--open {
