@@ -2,33 +2,37 @@
   <div class="header__bar">
     <a class="header__brand" href="#home" (click)="closeMenu()">Prabhath Kumar</a>
 
-    <button
-      class="header__menu-btn"
-      type="button"
-      (click)="toggleMenu()"
-      [attr.aria-expanded]="menuOpen()"
-      aria-label="Toggle navigation menu"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="header__right">
+      <nav class="header__nav" [class.header__nav--open]="menuOpen()">
+        <a href="#about" (click)="closeMenu()">About</a>
+        <a href="#experience" (click)="closeMenu()">Experience</a>
+        <a href="#projects" (click)="closeMenu()">Projects</a>
+        <a href="#contact" (click)="closeMenu()">Contact</a>
+        <a class="header__resume" href="resume.pdf" download>Resume</a>
+      </nav>
 
-    <nav class="header__nav" [class.header__nav--open]="menuOpen()">
-      <a href="#about" (click)="closeMenu()">About</a>
-      <a href="#experience" (click)="closeMenu()">Experience</a>
-      <a href="#projects" (click)="closeMenu()">Projects</a>
-      <a href="#contact" (click)="closeMenu()">Contact</a>
-      <a class="header__resume" href="resume.pdf" download>Resume</a>
+      <div class="header__controls">
+        <button
+          class="header__theme-toggle"
+          type="button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          {{ themeService.theme() === 'dark' ? '☀' : '☾' }}
+        </button>
 
-      <button
-        class="header__theme-toggle"
-        type="button"
-        (click)="toggleTheme()"
-        [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-      >
-        {{ themeService.theme() === 'dark' ? '☀' : '☾' }}
-      </button>
-    </nav>
+        <button
+          class="header__menu-btn"
+          type="button"
+          (click)="toggleMenu()"
+          [attr.aria-expanded]="menuOpen()"
+          aria-label="Toggle navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
   </div>
 </header>
