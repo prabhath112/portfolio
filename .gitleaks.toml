@@ -1,0 +1,13 @@
+title = "portfolio gitleaks config"
+
+[extend]
+# Keep every built-in rule: cloud keys, GitHub and npm tokens, private keys, generic secrets.
+useDefault = true
+
+# Personal data that must never be committed in text files. The phone number is
+# only allowed inside the resume PDF, which is binary and not scanned.
+[[rules]]
+id = "personal-phone-number"
+description = "Personal phone number"
+regex = '''95351[0-9]{5}'''
+tags = ["pii"]

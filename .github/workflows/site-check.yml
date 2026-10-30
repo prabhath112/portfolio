@@ -1,0 +1,51 @@
+name: Site check
+
+# Daily health and security check of the live site. A failed run emails the repo owner.
+on:
+  schedule:
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-site:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://prabhath112.github.io/portfolio/
+    steps:
+      - name: Site is up
+        run: curl -fsS -o page.html -w '%{http_code}\n' "$SITE"
+
+      - name: Content-Security-Policy is present and has no inline-script escape
+        run: |
+          grep -q 'http-equiv="Content-Security-Policy"' page.html
+          if grep -oE "script-src[^;]*" page.html | grep -q "unsafe-inline"; then
+            echo "script-src allows unsafe-inline"; exit 1
+          fi
+
+      - name: Analytics does not load before consent
+        run: |
+          if grep -q 'googletagmanager.com/gtag/js' page.html; then
+            echo "gtag.js is referenced in the initial HTML"; exit 1
+          fi
+
+      - name: Sitemap and resume are reachable
+        run: |
+          curl -fsS -o /dev/null "${SITE}sitemap.xml"
+          curl -fsS -o /dev/null "${SITE}resume.pdf"
+
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate

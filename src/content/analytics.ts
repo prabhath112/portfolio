@@ -1,5 +1,6 @@
-// Google Analytics 4 measurement ID. Loaded only after the visitor accepts the
-// consent banner. Set to '' to turn analytics off entirely.
+// Google Analytics 4 measurement ID. Intentionally empty in source: the deploy
+// workflow writes the real ID from the GA_MEASUREMENT_ID repository variable.
+// While empty, no analytics loads and no consent banner is shown.
 export const analytics = {
-  measurementId: 'G-E7CQ5QC3D6',
+  measurementId: '',
 };

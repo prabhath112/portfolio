@@ -28,6 +28,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The Analytics ID lives in a repository variable, not in the source tree.
+      - name: Inject Analytics measurement ID
+        env:
+          GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+        run: |
+          if [ -n "$GA_MEASUREMENT_ID" ]; then
+            echo "$GA_MEASUREMENT_ID" | grep -Eq '^G-[A-Z0-9]+$' || { echo "GA_MEASUREMENT_ID is malformed"; exit 1; }
+            printf "export const analytics = { measurementId: '%s' };\n" "$GA_MEASUREMENT_ID" > src/content/analytics.ts
+          fi
+
       - name: Build (static, prerendered)
         run: npm run build
 
