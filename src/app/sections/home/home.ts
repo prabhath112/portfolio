@@ -1,5 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, DestroyRef, afterNextRender, inject, signal } from '@angular/core';
 import { profile } from '../../../content/profile';
+
+// Matches the 0.45s per-step animation delay in home.scss.
+const STEP_MS = 450;
 
 interface TraceNode {
   name: string;
@@ -27,12 +30,42 @@ export class Home {
   readonly selected = signal(0);
   readonly running = signal(true);
 
+  private timers: ReturnType<typeof setTimeout>[] = [];
+
+  constructor() {
+    afterNextRender(() => this.walk());
+    inject(DestroyRef).onDestroy(() => this.clearTimers());
+  }
+
   select(index: number): void {
+    this.clearTimers();
     this.selected.set(index);
   }
 
   replay(): void {
+    this.clearTimers();
     this.running.set(false);
-    setTimeout(() => this.running.set(true), 40);
+    this.timers.push(
+      setTimeout(() => {
+        this.running.set(true);
+        this.walk();
+      }, 40),
+    );
+  }
+
+  /** Steps the caption through each node in time with the connector animation. */
+  private walk(): void {
+    this.selected.set(0);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    for (let i = 1; i < this.nodes.length; i++) {
+      this.timers.push(setTimeout(() => this.selected.set(i), i * STEP_MS));
+    }
+  }
+
+  private clearTimers(): void {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
   }
 }
