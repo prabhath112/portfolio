@@ -1,12 +1,12 @@
 // Design tokens ---------------------------------------------------------
 
 :root {
-  --color-bg: #f4f6f9;
+  --color-bg: #f6f6f4;
   --color-surface: #ffffff;
-  --color-text: #121c2b;
-  --color-text-muted: #4d5b6c;
-  --color-border: #d8dee7;
-  --color-accent: #2250c8;
+  --color-text: #1a1d1c;
+  --color-text-muted: #565c59;
+  --color-border: #dcdedb;
+  --color-accent: #0f6e5f;
   --color-accent-contrast: #ffffff;
   --color-signal: #b45f06;
 
@@ -26,13 +26,13 @@
 }
 
 [data-theme='dark'] {
-  --color-bg: #0d131b;
-  --color-surface: #141c27;
-  --color-text: #e6ebf2;
-  --color-text-muted: #9aa8b9;
-  --color-border: #263243;
-  --color-accent: #84a7ff;
-  --color-accent-contrast: #0d131b;
+  --color-bg: #111413;
+  --color-surface: #181c1b;
+  --color-text: #e8ebea;
+  --color-text-muted: #9ba5a1;
+  --color-border: #2a302e;
+  --color-accent: #5fc2ae;
+  --color-accent-contrast: #0d1110;
   --color-signal: #f0a347;
 }
 

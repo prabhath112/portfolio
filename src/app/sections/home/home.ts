@@ -17,11 +17,11 @@ export class Home {
   readonly profile = profile;
 
   readonly nodes: TraceNode[] = [
-    { name: 'Interface', tech: 'Angular, TypeScript', note: 'Angular screens for business workflows, kept simple to use and easy to maintain.' },
-    { name: 'API', tech: '.NET, ASP.NET Core', note: 'REST APIs with Swagger docs, webhooks, and microservices on Azure App Service.' },
-    { name: 'Messaging', tech: 'Azure Service Bus', note: 'Event-driven hand-offs between services, so one slow step does not block the rest.' },
-    { name: 'Data', tech: 'SQL Server, Cosmos DB', note: 'Relational and document storage, with queries written and tuned by hand.' },
-    { name: 'Telemetry', tech: 'Application Insights, KQL', note: 'When something breaks, I trace the request back through every layer to the root cause.' },
+    { name: 'Interface', tech: 'Angular, TypeScript', note: 'Angular and TypeScript front ends for business workflows.' },
+    { name: 'API', tech: '.NET, ASP.NET Core', note: 'ASP.NET Core REST APIs, webhooks, and microservices hosted on Azure App Service.' },
+    { name: 'Messaging', tech: 'Azure Service Bus', note: 'Event-driven communication between services using Azure Service Bus.' },
+    { name: 'Data', tech: 'SQL Server, Cosmos DB', note: 'SQL Server and Cosmos DB for relational and document data.' },
+    { name: 'Telemetry', tech: 'Application Insights, KQL', note: 'Application Insights and KQL queries for tracing production issues back through the layers.' },
   ];
 
   readonly selected = signal(0);
