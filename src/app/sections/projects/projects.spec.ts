@@ -12,6 +12,6 @@ describe('Projects', () => {
     const fixture = TestBed.createComponent(Projects);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('app-project-card').length).toBe(2);
+    expect(compiled.querySelectorAll('app-project-card').length).toBe(3);
   });
 });

@@ -1,9 +1,29 @@
 <section class="page about" id="about">
-  <h2>About</h2>
+  <h2>What I do</h2>
 
-  @for (paragraph of profile.bio; track paragraph) {
-    <p>{{ paragraph }}</p>
-  }
+  <div class="about__pillars">
+    @for (pillar of profile.pillars; track pillar.title) {
+      <article class="about__pillar">
+        <h3>{{ pillar.title }}</h3>
+        <p>{{ pillar.text }}</p>
+        <ul class="about__tags">
+          @for (tag of pillar.tags; track tag) {
+            <li>{{ tag }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+
+  <h3>Skills</h3>
+  <dl class="about__skills">
+    @for (group of profile.skillGroups; track group.label) {
+      <div>
+        <dt>{{ group.label }}</dt>
+        <dd>{{ group.items.join(', ') }}</dd>
+      </div>
+    }
+  </dl>
 
   <h3>Education</h3>
   <ul class="about__education">

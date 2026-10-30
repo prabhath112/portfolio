@@ -1,16 +1,21 @@
 <section class="hero" id="home">
-  <p class="hero__eyebrow">{{ profile.role }} at EG India</p>
+  <p class="hero__eyebrow">{{ profile.role }} at EG India &middot; {{ profile.location }}</p>
   <h1>{{ profile.name }}</h1>
+  <p class="hero__tagline">{{ profile.tagline }}</p>
   <p class="hero__summary">{{ profile.summary }}</p>
 
   <div class="hero__actions">
-    <a href="#projects" class="btn btn--primary">See my work</a>
+    <a href="#experience" class="btn btn--primary">See my work</a>
+    <a href="resume.pdf" class="btn btn--secondary" download>Download resume</a>
     <a href="#contact" class="btn btn--secondary">Get in touch</a>
   </div>
 
-  <ul class="hero__skills">
-    @for (skill of profile.skills; track skill) {
-      <li>{{ skill }}</li>
+  <dl class="hero__stats">
+    @for (stat of profile.stats; track stat.label) {
+      <div>
+        <dt>{{ stat.value }}</dt>
+        <dd>{{ stat.label }}</dd>
+      </div>
     }
-  </ul>
+  </dl>
 </section>
