@@ -10,7 +10,7 @@ for (const name of ['index.html', 'index.csr.html']) {
   const file = join(dir, name);
   let html = readFileSync(file, 'utf8');
 
-  const hashes = [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/json")[^>]*>([\s\S]*?)<\/script>/g)]
+  const hashes = [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/(?:ld\+)?json")[^>]*>([\s\S]*?)<\/script>/g)]
     .map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
 
   const csp = [
