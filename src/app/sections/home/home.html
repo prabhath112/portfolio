@@ -13,7 +13,9 @@
   <div class="trace" [class.trace--run]="running()">
     <div class="trace__head">
       <p class="trace__title">The layers I work across, from screen to database</p>
-      <button type="button" class="trace__replay" (click)="replay()">Replay request</button>
+      <button type="button" class="trace__replay" [disabled]="phase() === 'playing'" (click)="play()">
+        {{ phase() === 'idle' ? 'Play request' : phase() === 'playing' ? 'Playing...' : 'Replay request' }}
+      </button>
     </div>
 
     <ol class="trace__path">

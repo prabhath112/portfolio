@@ -1,8 +1,8 @@
-import { Component, DestroyRef, afterNextRender, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { profile } from '../../../content/profile';
 
-// Matches the 0.45s per-step animation delay in home.scss.
-const STEP_MS = 450;
+// Matches the per-step animation delay in home.scss.
+const STEP_MS = 1400;
 
 interface TraceNode {
   name: string;
@@ -28,40 +28,36 @@ export class Home {
   ];
 
   readonly selected = signal(0);
-  readonly running = signal(true);
+  readonly running = signal(false);
+  readonly phase = signal<'idle' | 'playing' | 'done'>('idle');
 
   private timers: ReturnType<typeof setTimeout>[] = [];
 
   constructor() {
-    afterNextRender(() => this.walk());
     inject(DestroyRef).onDestroy(() => this.clearTimers());
   }
 
   select(index: number): void {
     this.clearTimers();
+    this.phase.set('done');
     this.selected.set(index);
   }
 
-  replay(): void {
+  /** Plays the request through each node, one step at a time. */
+  play(): void {
     this.clearTimers();
     this.running.set(false);
+    this.phase.set('playing');
+    this.selected.set(0);
     this.timers.push(
       setTimeout(() => {
         this.running.set(true);
-        this.walk();
+        for (let i = 1; i < this.nodes.length; i++) {
+          this.timers.push(setTimeout(() => this.selected.set(i), i * STEP_MS));
+        }
+        this.timers.push(setTimeout(() => this.phase.set('done'), (this.nodes.length - 1) * STEP_MS + 600));
       }, 40),
     );
-  }
-
-  /** Steps the caption through each node in time with the connector animation. */
-  private walk(): void {
-    this.selected.set(0);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-    for (let i = 1; i < this.nodes.length; i++) {
-      this.timers.push(setTimeout(() => this.selected.set(i), i * STEP_MS));
-    }
   }
 
   private clearTimers(): void {

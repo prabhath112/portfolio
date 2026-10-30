@@ -1,12 +1,12 @@
 // Design tokens ---------------------------------------------------------
 
 :root {
-  --color-bg: #f6f6f4;
-  --color-surface: #ffffff;
-  --color-text: #1a1d1c;
-  --color-text-muted: #565c59;
-  --color-border: #dcdedb;
-  --color-accent: #0f6e5f;
+  --color-bg: #e8ebe7;
+  --color-surface: #f1f3f0;
+  --color-text: #1c2321;
+  --color-text-muted: #404945;
+  --color-border: #c5cbc5;
+  --color-accent: #0d6254;
   --color-accent-contrast: #ffffff;
   --color-signal: #b45f06;
 
@@ -62,7 +62,10 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
