@@ -1,0 +1,40 @@
+.consent {
+  position: fixed;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: var(--space-2);
+  z-index: 20;
+  max-width: 44rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+  p {
+    flex: 1 1 18rem;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+}
+
+.consent__actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.consent .btn {
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.consent .btn--secondary {
+  background: transparent;
+}

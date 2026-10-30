@@ -15,11 +15,11 @@ for (const name of ['index.html', 'index.csr.html']) {
 
   const csp = [
     "default-src 'none'",
-    `script-src 'self' ${hashes.join(' ')}`,
+    `script-src 'self' ${hashes.join(' ')} https://www.googletagmanager.com`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com",
     "font-src 'self'",
-    "connect-src 'self'",
+    "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
     "base-uri 'self'",
     "form-action 'none'",
     "object-src 'none'",

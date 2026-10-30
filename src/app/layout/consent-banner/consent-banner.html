@@ -1,0 +1,12 @@
+@if (consent.enabled && consent.choice() === null) {
+  <div class="consent" role="region" aria-label="Analytics consent">
+    <p>
+      I use Google Analytics to see how many people visit this site.
+      It only loads if you accept. <a href="#privacy">Privacy notice</a>
+    </p>
+    <div class="consent__actions">
+      <button type="button" class="btn btn--primary" (click)="consent.accept()">Accept analytics</button>
+      <button type="button" class="btn btn--secondary" (click)="consent.decline()">Decline</button>
+    </div>
+  </div>
+}
