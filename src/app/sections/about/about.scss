@@ -1,37 +1,22 @@
-.about__education {
+.about__pillars {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.about__credential {
-  color: var(--color-text);
-  font-weight: 600;
-  margin: 0;
-}
-
-.about__institution {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.about__pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--space-2);
-  margin-bottom: var(--space-4);
+  margin: var(--space-3) 0 var(--space-5);
 }
 
 .about__pillar {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  padding: var(--space-3);
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
 
   h3 {
-    margin-top: 0;
+    margin: 0;
+  }
+
+  p {
+    margin-bottom: var(--space-1);
   }
 }
 
@@ -53,30 +38,77 @@
   }
 }
 
-.about__skills {
-  display: grid;
-  gap: var(--space-2);
-  margin: 0 0 var(--space-4);
+.about__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
 
-  div {
-    display: grid;
-    grid-template-columns: 11rem 1fr;
-    gap: var(--space-2);
-  }
-
-  dt {
-    font-weight: 600;
-  }
-
-  dd {
-    margin: 0;
+  button {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
     color: var(--color-text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+      border-color: var(--color-accent);
+      color: var(--color-text);
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-accent-contrast);
+    }
   }
 }
 
-@media (max-width: 640px) {
-  .about__skills div {
+.about__skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  min-height: 5.5rem;
+  align-content: flex-start;
+
+  li {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.25rem 0.65rem;
+  }
+}
+
+.about__education {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.about__credential {
+  color: var(--color-text);
+  font-weight: 600;
+  margin: 0;
+}
+
+.about__institution {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .about__pillar {
     grid-template-columns: 1fr;
-    gap: 0.2rem;
+    gap: var(--space-1);
   }
 }

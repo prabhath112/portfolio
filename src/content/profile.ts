@@ -9,11 +9,6 @@ export interface Pillar {
   tags: string[];
 }
 
-export interface Stat {
-  value: string;
-  label: string;
-}
-
 export interface EducationEntry {
   institution: string;
   credential: string;
@@ -26,32 +21,26 @@ export const profile = {
   tagline: 'Full-stack developer. Azure, .NET, and Angular.',
   location: 'Mangaluru, Karnataka, India',
   summary:
-    'I build retail point-of-sale and back-office systems at EG India: .NET services, Angular screens, and Azure integrations. I also write the tooling that makes my team faster, including custom Claude Code skills, agents, and MCP servers.',
-  stats: [
-    { value: '3+', label: 'years in full-stack development' },
-    { value: '19', label: 'retail chains on the POS apps I work on' },
-    { value: '30+', label: 'retail tenants served by my microservices' },
-    { value: '150+', label: 'Jira tickets delivered' },
-  ] as Stat[],
+    'I build full-stack applications with .NET, Angular, and Azure: REST APIs, microservices, and cloud integrations. I also build AI tooling around Claude Code, with custom skills, agents, and MCP servers.',
   pillars: [
     {
       title: 'Backend and integrations',
-      text: 'ASP.NET Core Web APIs with Swagger docs, partner webhooks, and integrations with legacy WCF and SOAP services, across 6 .NET microservices.',
+      text: 'ASP.NET Core Web APIs with Swagger docs, webhooks, and microservices, plus integrations with legacy services.',
       tags: ['.NET', 'C#', 'REST', 'WCF'],
     },
     {
       title: 'Full-stack delivery',
-      text: 'Angular screens connected to dependable services for retail POS and back-office applications.',
+      text: 'Angular front ends connected to dependable services, for business applications used in retail.',
       tags: ['Angular', 'TypeScript', 'SQL Server'],
     },
     {
       title: 'Cloud and observability',
-      text: 'Azure App Service, Service Bus, Cosmos DB, and Application Insights. I trace production issues with KQL and keep CI/CD running in Azure DevOps.',
+      text: 'Azure App Service, Service Bus, Cosmos DB, and Application Insights. I trace production issues with KQL and work with CI/CD pipelines in Azure DevOps.',
       tags: ['Azure', 'KQL', 'Azure DevOps'],
     },
     {
       title: 'AI tooling',
-      text: 'Custom Claude Code skills, agents, and hooks, plus MCP servers wired to Jira, Confluence, and Zephyr for team workflows.',
+      text: 'Custom Claude Code skills, agents, and hooks, plus MCP servers that connect LLM tooling to everyday workflows.',
       tags: ['Claude Code', 'MCP', 'LLM APIs'],
     },
   ] as Pillar[],
@@ -69,7 +58,7 @@ export const profile = {
     { label: 'Databases', items: ['SQL Server', 'Azure SQL', 'Cosmos DB', 'MySQL'] },
     {
       label: 'Testing and practices',
-      items: ['MSTest', 'Moq', 'FluentAssertions', 'Playwright', 'Agile/Scrum', 'Code review', 'Jira', 'Postman'],
+      items: ['MSTest', 'Moq', 'FluentAssertions', 'Playwright', 'Agile/Scrum', 'Code review', 'Postman'],
     },
     { label: 'AI tooling', items: ['Claude Code skills, agents, hooks', 'MCP servers', 'LLM APIs'] },
     { label: 'Familiar with', items: ['Blazor', 'MudBlazor', 'Kotlin', 'Python', 'React'] },

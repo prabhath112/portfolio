@@ -9,17 +9,6 @@ export interface ProjectEntry {
 
 export const projects: ProjectEntry[] = [
   {
-    id: 'azure-insights-dashboard',
-    name: 'Azure Insights Dashboard',
-    description: 'Internal observability tool at EG India.',
-    highlights: [
-      'Blazor Server dashboard (MudBlazor, ApexCharts) that runs KQL queries against Application Insights for 34 retail tenants, with exception clustering and cross-tenant anomaly detection.',
-      'Integrated POS API test runner that runs .NET and Playwright suites against 3 Azure test slots.',
-      'Telemetry queries packaged as an MCP server library so Claude Code can query the same data. Deployed on IIS.',
-    ],
-    tech: ['Blazor', 'MudBlazor', 'KQL', 'Application Insights', 'Playwright', 'MCP'],
-  },
-  {
     id: 'genkeyboard',
     name: 'GenKeyboard',
     description: 'AI writing keyboard for Android. Open source, Apache 2.0.',

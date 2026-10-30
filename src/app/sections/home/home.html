@@ -1,21 +1,38 @@
 <section class="hero" id="home">
-  <p class="hero__eyebrow">{{ profile.role }} at EG India &middot; {{ profile.location }}</p>
+  <p class="hero__intro">{{ profile.role }} at EG India, based in {{ profile.location }}</p>
   <h1>{{ profile.name }}</h1>
   <p class="hero__tagline">{{ profile.tagline }}</p>
   <p class="hero__summary">{{ profile.summary }}</p>
 
   <div class="hero__actions">
     <a href="#experience" class="btn btn--primary">See my work</a>
-    <a href="resume.pdf" class="btn btn--secondary" download>Download resume</a>
+    <a href="resume.pdf" class="btn btn--secondary" download="Prabhath Kumar's Resume.pdf">Download resume</a>
     <a href="#contact" class="btn btn--secondary">Get in touch</a>
   </div>
 
-  <dl class="hero__stats">
-    @for (stat of profile.stats; track stat.label) {
-      <div>
-        <dt>{{ stat.value }}</dt>
-        <dd>{{ stat.label }}</dd>
-      </div>
-    }
-  </dl>
+  <div class="trace" [class.trace--run]="running()">
+    <div class="trace__head">
+      <p class="trace__title">How a request travels through the systems I build</p>
+      <button type="button" class="trace__replay" (click)="replay()">Replay request</button>
+    </div>
+
+    <ol class="trace__path">
+      @for (node of nodes; track node.name; let i = $index) {
+        <li class="trace__step" [style.--i]="i">
+          <button
+            type="button"
+            class="trace__node"
+            [class.trace__node--active]="selected() === i"
+            [attr.aria-pressed]="selected() === i"
+            (click)="select(i)"
+          >
+            <span class="trace__name">{{ node.name }}</span>
+            <span class="trace__tech">{{ node.tech }}</span>
+          </button>
+        </li>
+      }
+    </ol>
+
+    <p class="trace__note" aria-live="polite">{{ nodes[selected()].note }}</p>
+  </div>
 </section>

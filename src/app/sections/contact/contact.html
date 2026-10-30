@@ -1,12 +1,15 @@
 <section class="page contact" id="contact">
-  <h2>Contact</h2>
-  <p>Best ways to reach me:</p>
+  <h2>Let's talk</h2>
+  <p>I'm open to new opportunities. Email is the quickest way to reach me.</p>
+
+  <p class="contact__email">
+    <a [href]="'mailto:' + links.email">{{ links.email }}</a>
+    <button type="button" class="contact__copy" (click)="copyEmail()">
+      {{ copied() ? 'Copied' : 'Copy email' }}
+    </button>
+  </p>
 
   <ul class="contact__list">
-    <li>
-      <span class="contact__label">Email</span>
-      <a [href]="'mailto:' + links.email">{{ links.email }}</a>
-    </li>
     <li>
       <span class="contact__label">LinkedIn</span>
       <a [href]="links.linkedin" target="_blank" rel="noopener">linkedin.com/in/prabhath007</a>
@@ -17,7 +20,7 @@
     </li>
     <li>
       <span class="contact__label">Resume</span>
-      <a href="resume.pdf" download>Download PDF</a>
+      <a href="resume.pdf" download="Prabhath Kumar's Resume.pdf">Download PDF</a>
     </li>
   </ul>
 </section>

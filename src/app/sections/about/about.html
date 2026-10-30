@@ -1,36 +1,43 @@
 <section class="page about" id="about">
   <h2>What I do</h2>
 
-  <div class="about__pillars">
+  <ul class="about__pillars">
     @for (pillar of profile.pillars; track pillar.title) {
-      <article class="about__pillar">
+      <li class="about__pillar">
         <h3>{{ pillar.title }}</h3>
-        <p>{{ pillar.text }}</p>
-        <ul class="about__tags">
-          @for (tag of pillar.tags; track tag) {
-            <li>{{ tag }}</li>
-          }
-        </ul>
-      </article>
+        <div>
+          <p>{{ pillar.text }}</p>
+          <ul class="about__tags">
+            @for (tag of pillar.tags; track tag) {
+              <li>{{ tag }}</li>
+            }
+          </ul>
+        </div>
+      </li>
     }
-  </div>
+  </ul>
 
   <h3>Skills</h3>
-  <dl class="about__skills">
+  <div class="about__filters" role="group" aria-label="Filter skills by area">
+    <button type="button" [attr.aria-pressed]="filter() === null" (click)="setFilter(null)">All</button>
     @for (group of profile.skillGroups; track group.label) {
-      <div>
-        <dt>{{ group.label }}</dt>
-        <dd>{{ group.items.join(', ') }}</dd>
-      </div>
+      <button type="button" [attr.aria-pressed]="filter() === group.label" (click)="setFilter(group.label)">
+        {{ group.label }}
+      </button>
     }
-  </dl>
+  </div>
+  <ul class="about__skills" aria-live="polite">
+    @for (skill of visibleSkills(); track skill) {
+      <li>{{ skill }}</li>
+    }
+  </ul>
 
   <h3>Education</h3>
   <ul class="about__education">
     @for (entry of profile.education; track entry.institution) {
       <li>
         <p class="about__credential">{{ entry.credential }}</p>
-        <p class="about__institution">{{ entry.institution }} &middot; {{ entry.period }}</p>
+        <p class="about__institution">{{ entry.institution }}, {{ entry.period }}</p>
       </li>
     }
   </ul>

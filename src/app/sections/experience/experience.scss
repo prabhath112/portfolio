@@ -7,6 +7,11 @@
 .timeline__entry {
   border-left: 2px solid var(--color-border);
   padding-left: var(--space-3);
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-left-color: var(--color-accent);
+  }
 
   h3 {
     margin-bottom: 0.25rem;

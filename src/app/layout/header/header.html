@@ -4,11 +4,11 @@
 
     <div class="header__right">
       <nav class="header__nav" [class.header__nav--open]="menuOpen()">
-        <a href="#about" (click)="closeMenu()">About</a>
-        <a href="#experience" (click)="closeMenu()">Experience</a>
-        <a href="#projects" (click)="closeMenu()">Projects</a>
-        <a href="#contact" (click)="closeMenu()">Contact</a>
-        <a class="header__resume" href="resume.pdf" download>Resume</a>
+        <a href="#about" (click)="closeMenu()" [class.is-active]="active() === 'about'" [attr.aria-current]="active() === 'about' ? 'location' : null">About</a>
+        <a href="#experience" (click)="closeMenu()" [class.is-active]="active() === 'experience'" [attr.aria-current]="active() === 'experience' ? 'location' : null">Experience</a>
+        <a href="#projects" (click)="closeMenu()" [class.is-active]="active() === 'projects'" [attr.aria-current]="active() === 'projects' ? 'location' : null">Projects</a>
+        <a href="#contact" (click)="closeMenu()" [class.is-active]="active() === 'contact'" [attr.aria-current]="active() === 'contact' ? 'location' : null">Contact</a>
+        <a class="header__resume" href="resume.pdf" download="Prabhath Kumar's Resume.pdf">Resume</a>
       </nav>
 
       <div class="header__controls">

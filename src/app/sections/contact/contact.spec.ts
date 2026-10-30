@@ -8,10 +8,10 @@ describe('Contact', () => {
     }).compileComponents();
   });
 
-  it('renders email, LinkedIn, GitHub, and resume links', () => {
+  it('renders LinkedIn, GitHub, and resume links', () => {
     const fixture = TestBed.createComponent(Contact);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('.contact__list li').length).toBe(4);
+    expect(compiled.querySelectorAll('.contact__list li').length).toBe(3);
   });
 });
