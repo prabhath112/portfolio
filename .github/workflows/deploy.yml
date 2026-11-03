@@ -28,17 +28,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # The Analytics ID lives in a repository variable, not in the source tree.
-      - name: Inject Analytics measurement ID
+      # Analytics ID and contact-form config live in repository variables, not in the source tree.
+      - name: Inject build config
         env:
           GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
-        run: |
-          if [ -n "$GA_MEASUREMENT_ID" ]; then
-            echo "$GA_MEASUREMENT_ID" | grep -Eq '^G-[A-Z0-9]+$' || { echo "GA_MEASUREMENT_ID is malformed"; exit 1; }
-            printf "export const analytics = { measurementId: '%s' };\n" "$GA_MEASUREMENT_ID" > src/content/analytics.ts
-          fi
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+        run: sh scripts/inject-config.sh
 
       - name: Build (static, prerendered)
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
         run: npm run build
 
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
@@ -121,6 +121,8 @@ jobs:
         name: Build for root hosting (same script Vercel runs)
         env:
           GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
         run: sh scripts/build-root.sh
 
       - if: steps.check.outputs.skip != 'true'

@@ -1,13 +1,11 @@
 #!/bin/sh
 # Build for hosting at a site root (Vercel, the Oracle VM). GitHub Pages serves
 # from /portfolio/ and keeps using `npm run build` with the base href in angular.json.
-# GA_MEASUREMENT_ID comes from the host's environment (Vercel env var / Actions variable).
+# Config (GA_MEASUREMENT_ID, SUPABASE_*) comes from the host's environment (Vercel env vars / Actions variables).
 set -eu
 
-if [ -n "${GA_MEASUREMENT_ID:-}" ]; then
-  echo "$GA_MEASUREMENT_ID" | grep -Eq '^G-[A-Z0-9]+$' || { echo "GA_MEASUREMENT_ID is malformed"; exit 1; }
-  printf "export const analytics = { measurementId: '%s' };\n" "$GA_MEASUREMENT_ID" > src/content/analytics.ts
-fi
+# Analytics ID and contact-form config from the environment (same script as GitHub Pages).
+sh scripts/inject-config.sh
 
 # Vercel sets VERCEL=1 during its builds.
 if [ "${VERCEL:-}" = "1" ]; then

@@ -9,6 +9,24 @@
     </button>
   </p>
 
+  @if (formEnabled) {
+    <form class="contact__form" (submit)="send($event)" aria-label="Send me a message">
+      <label>Name <input name="name" required maxlength="100" autocomplete="name"></label>
+      <label>Email <input name="email" type="email" required maxlength="254" autocomplete="email"></label>
+      <label>Message <textarea name="message" required maxlength="5000" rows="5"></textarea></label>
+      <label class="contact__hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+      <button type="submit" class="btn btn--primary" [disabled]="sendState() === 'sending'">
+        {{ sendState() === 'sending' ? 'Sending...' : 'Send message' }}
+      </button>
+      @if (sendState() === 'sent') {
+        <p class="contact__status" role="status">Thanks, your message was sent. I'll reply by email.</p>
+      }
+      @if (sendState() === 'error') {
+        <p class="contact__status contact__status--error" role="alert">Sending failed. Please email me instead.</p>
+      }
+    </form>
+  }
+
   <ul class="contact__list">
     <li>
       <span class="contact__label">LinkedIn</span>

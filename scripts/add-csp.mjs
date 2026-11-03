@@ -5,6 +5,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dir = join(import.meta.dirname, '../dist/portfolio/browser');
+// Contact form endpoint (Supabase), only when configured and well-formed.
+const supabase = /^https:\/\/[a-z0-9]+\.supabase\.co$/.test(process.env.SUPABASE_URL || '') ? ` ${process.env.SUPABASE_URL}` : '';
 
 for (const name of ['index.html', 'index.csr.html']) {
   const file = join(dir, name);
@@ -19,7 +21,7 @@ for (const name of ['index.html', 'index.csr.html']) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com",
     "font-src 'self'",
-    "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+    `connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com${supabase}`,
     "base-uri 'self'",
     "form-action 'none'",
     "object-src 'none'",
