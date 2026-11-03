@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { analytics } from '../../content/analytics';
+import { hosting } from '../../content/hosting';
 import { ConsentService } from './consent.service';
 
 describe('ConsentService', () => {
@@ -34,6 +35,27 @@ describe('ConsentService', () => {
     service.decline();
     expect(service.choice()).toBe('denied');
     expect(document.getElementById('ga-script')).toBeNull();
+  });
+
+  it('loads Vercel analytics only on the Vercel build and only after accepting', () => {
+    hosting.vercel = true;
+    try {
+      const service = TestBed.inject(ConsentService);
+      expect(document.getElementById('vercel-insights')).toBeNull();
+      service.accept();
+      expect(document.getElementById('vercel-insights')?.getAttribute('src')).toBe('/_vercel/insights/script.js');
+      expect(document.getElementById('vercel-speed-insights')?.getAttribute('src')).toBe('/_vercel/speed-insights/script.js');
+    } finally {
+      hosting.vercel = false;
+      document.getElementById('vercel-insights')?.remove();
+      document.getElementById('vercel-speed-insights')?.remove();
+    }
+  });
+
+  it('never loads Vercel analytics on other hosts', () => {
+    const service = TestBed.inject(ConsentService);
+    service.accept();
+    expect(document.getElementById('vercel-insights')).toBeNull();
   });
 
   it('loads analytics only after accepting, and remembers the choice', () => {

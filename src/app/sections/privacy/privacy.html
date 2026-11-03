@@ -8,6 +8,10 @@
       browser, and you can change it at any time.
     </p>
     <p>
+      On the copy hosted by Vercel, accepting also turns on Vercel Web Analytics and Speed Insights, which count
+      page views and measure loading speed. They use no cookies and store no personal information.
+    </p>
+    <p>
       Your current choice:
       <strong>{{ consent.choice() === 'granted' ? 'analytics accepted' : consent.choice() === 'denied' ? 'analytics declined' : 'not chosen yet' }}</strong>.
       <button type="button" class="privacy__link" (click)="consent.reset()">Change my choice</button>
@@ -20,8 +24,11 @@
     The only data stored in your browser is your light or dark theme choice. It never leaves your device.
   </p>
   <p>
-    The site is hosted on GitHub Pages, which may keep standard server logs such as IP addresses under
-    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's privacy statement</a>.
+    The same site is hosted on GitHub Pages, Vercel and my own Oracle Cloud server. Each may keep standard
+    server logs such as IP addresses, under
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's privacy statement</a>,
+    <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel's privacy policy</a>
+    and short-lived access logs on my server.
     If you email me, I only use your message and address to reply.
   </p>
   <p>Questions or requests about your data: <a [href]="'mailto:' + email">{{ email }}</a>.</p>

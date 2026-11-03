@@ -1,6 +1,7 @@
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { analytics } from '../../content/analytics';
+import { hosting } from '../../content/hosting';
 
 export type ConsentChoice = 'granted' | 'denied';
 
@@ -70,5 +71,19 @@ export class ConsentService {
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(analytics.measurementId)}`;
     document.head.appendChild(script);
+
+    // Vercel Web Analytics and Speed Insights: same-origin, cookieless, Vercel build only.
+    if (hosting.vercel) {
+      for (const [id, src] of [
+        ['vercel-insights', '/_vercel/insights/script.js'],
+        ['vercel-speed-insights', '/_vercel/speed-insights/script.js'],
+      ]) {
+        const s = document.createElement('script');
+        s.id = id;
+        s.defer = true;
+        s.src = src;
+        document.head.appendChild(s);
+      }
+    }
   }
 }

@@ -29,8 +29,11 @@ jobs:
       - name: Unit tests
         run: npm test -- --no-watch --no-progress
 
-      - name: Build
+      - name: Build (GitHub Pages, base /portfolio/)
         run: npm run build
+
+      - name: Build (Vercel and Oracle VM, site root)
+        run: sh scripts/build-root.sh
 
       - name: Audit dependencies
         run: npm audit --audit-level=high
