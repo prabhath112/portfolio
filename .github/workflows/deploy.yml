@@ -57,6 +57,33 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
 
+  # Vercel builds this commit itself (Git integration) and reports a "Vercel" commit
+  # status, not a GitHub deployment. This job waits for that status and records it as
+  # the "vercel" environment, so all three hosts appear under Deployments.
+  vercel:
+    runs-on: ubuntu-latest
+    environment:
+      name: vercel
+      url: https://prabhathkumar.vercel.app
+    permissions:
+      statuses: read
+    steps:
+      - name: Wait for the Vercel production deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          for i in $(seq 1 60); do
+            state=$(gh api "repos/$REPO/commits/$SHA/status" --jq '[.statuses[] | select(.context == "Vercel")][0].state // "missing"')
+            case "$state" in
+              success) echo "Vercel deployed $SHA"; exit 0 ;;
+              failure|error) echo "Vercel deployment $state"; exit 1 ;;
+            esac
+            sleep 10
+          done
+          echo "Timed out waiting for Vercel (last state: $state)"; exit 1
+
   # Second copy on the Oracle VM (https://rebirth007.duckdns.org), served from the
   # site root, so it is built with base href "/" instead of "/portfolio/".
   # The deploy key is restricted on the VM to a single command that replaces the
