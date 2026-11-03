@@ -1,7 +1,20 @@
 # Portfolio
 
-Personal portfolio site, built with Angular. Live at
-[prabhath112.github.io/portfolio](https://prabhath112.github.io/portfolio).
+Personal portfolio site, built with Angular.
+
+## Live
+
+Every push to `main` deploys the same build to three hosts:
+
+| Host | URL |
+|---|---|
+| Vercel | [prabhathkumar.vercel.app](https://prabhathkumar.vercel.app) |
+| GitHub Pages | [prabhath112.github.io/portfolio](https://prabhath112.github.io/portfolio) |
+| Oracle Cloud VM | [rebirth007.duckdns.org](https://rebirth007.duckdns.org) |
+
+GitHub Pages serves the site from `/portfolio/` (`npm run build`); Vercel and the
+VM serve it from the root (`scripts/build-root.sh`). The deploy workflow is
+`.github/workflows/deploy.yml`; Vercel builds from `vercel.json`.
 
 ## Stack
 

@@ -63,6 +63,10 @@ jobs:
   # site files; it cannot open a shell.
   deploy-vm:
     runs-on: ubuntu-latest
+    # Shows up under "Deployments" on the repo page next to github-pages and Vercel.
+    environment:
+      name: oracle-vm
+      url: https://rebirth007.duckdns.org
     permissions:
       contents: read
     steps:
